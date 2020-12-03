@@ -1,3 +1,5 @@
+import { Component } from '@angular/core';
+
 @Component({
   selector: 'pm-root',
   template: `
@@ -6,7 +8,7 @@
     </div>
   `
 })
+
 export class AppComponent {
   pageTitle: string = 'Product Manager';
 }
-import { Component } from '@angular/core';
