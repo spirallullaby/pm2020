@@ -8,6 +8,7 @@ import { StarComponent } from './shared/star-component';
 @NgModule({
   imports: [BrowserModule],
   declarations: [AppComponent, ProductListComponent, ConvertToSpacesPipe, StarComponent],
-  bootstrap: [AppComponent, ProductListComponent]
+  bootstrap: [AppComponent],
+  providers: [ProductListComponent]
 })
 export class AppModule { }
