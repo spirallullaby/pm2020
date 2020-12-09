@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
 
@@ -7,21 +6,12 @@ import { IProduct } from './product';
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css']
 })
-
 export class ProductListComponent implements OnInit {
-    pageTitle: string = "Product List"; 
-
-    filteredProducts: IProduct[];    
-
-    _listFilter: string;
-    get listFilter(): string {
-        return this._listFilter;
-    }
-    set listFilter(value: string) {
-        this._listFilter = value;
-        this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
-    }
-
+    pageTitle: string = "Product List";
+    imageWidth: number = 50;
+    imageMargin: number = 2;
+    showImage: boolean = false;
+    filteredProducts: IProduct[]; 
     products: IProduct[] = [
         {
             "productId": 2,
@@ -45,8 +35,20 @@ export class ProductListComponent implements OnInit {
         }
     ];
 
-    ngOnInit(): void {
-        console.log('In OnInit');
+    _listFilter: string;
+
+    constructor() {
+        this.filteredProducts = this.products;
+        this.listFilter = 'cart';
+    }
+
+    get listFilter(): string {
+        return this._listFilter;
+    }
+
+    set listFilter(value: string) {
+        this._listFilter = value;
+        this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
     }
 
     performFilter(filterBy: string): IProduct[] {
@@ -54,11 +56,17 @@ export class ProductListComponent implements OnInit {
         return this.products.filter((product: IProduct) =>
             product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
     }
-    constructor() {
-        this.filteredProducts = this.products;
-        this.listFilter = 'cart';
+    
+
+    ngOnInit(): void {
+        console.log('In OnInit');
     }
+
+    toggleImage(): void {
+        this.showImage = !this.showImage;
+    }
+
+    onRatingClicked(message: string): void {
+        this.pageTitle = 'Product List: ' + message;
+    }    
 }
-
-
-
