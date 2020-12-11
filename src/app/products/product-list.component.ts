@@ -1,27 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
-import { ProductService } from './products.service';
+import { ProductService} from './products.service';
 
 @Component({
     selector: 'pm-products',
     templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.css'],
-    providers: [ProductListComponent]
+    styleUrls: ['./product-list.component.css']
 })
-
 export class ProductListComponent implements OnInit {
     pageTitle: string = "Product List";
     imageWidth: number = 50;
     imageMargin: number = 2;
     showImage: boolean = false;
     filteredProducts: IProduct[]; 
-    products: IProduct[];
+    products: IProduct[] = [];
     errorMessage: string;
-
     _listFilter: string;
 
     constructor(private _productService: ProductService) {
-        this.filteredProducts = this.products;
+        this.listFilter = '';
     }
 
     get listFilter(): string {
@@ -41,14 +38,16 @@ export class ProductListComponent implements OnInit {
     
 
     ngOnInit(): void {
+        console.log('In OnInit');
+ 
         this._productService.getProducts()
-        .subscribe({
-            next: products => {
-                this.products = products;
-                this.filteredProducts = this.products;
-            },
-            error: error => this.errorMessage = <any>error
-        });
+            .subscribe({
+                next: products => {
+                    this.products = products;
+                    this.filteredProducts = this.products;
+                },
+                error: error => this.errorMessage = <any>error
+            }); 
     }
 
     toggleImage(): void {
