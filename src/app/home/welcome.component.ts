@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-welcome.component',
-  templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.css']
+    templateUrl: './welcome.component.html'
 })
-export class WelcomeComponent implements OnInit {
-  pageTitle: string = "Welcome"
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class WelcomeComponent {
+    public pageTitle: string = 'Welcome';
 }

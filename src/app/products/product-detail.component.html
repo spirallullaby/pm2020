@@ -3,4 +3,9 @@
         {{pageTitle + ': ' + product.productName}}
         <div class='panel panel-primary' *ngIf='product'></div>
     </div>
+    <div class='card-footer'>
+        <a class='btn btn-outlined-secondary' (click)='onBack()' style='width:80px'>
+            <i class='fa fa-chevron-left'></i> Back
+        </a>
+    </div>
 </div>
